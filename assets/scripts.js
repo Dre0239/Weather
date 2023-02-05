@@ -12,7 +12,7 @@ submitBtn.addEventListener("click", getInfo);
 function getInfo() {
   var coorUrl =
     "http://api.openweathermap.org/geo/1.0/direct?q=" +
-    search.Value +
+    search.value +
     "&limit=1&appid=" +
     key +
     "";
