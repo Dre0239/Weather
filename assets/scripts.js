@@ -40,8 +40,11 @@ function getInfo(coorUrl) {
         })
         .then(function (data) {
           console.log(data);
-
           newCity.textContent = data.city.name;
+          for (var i = 0; i < 6; i++) {
+            document.getElementById("temp-" + i + "").textContent =
+              "Temp: " + Number(data.list[i].main.temp);
+          }
         });
     });
 }
