@@ -56,7 +56,7 @@ function getInfo(coorUrl) {
               "%";
           }
           for (var i = 0; i < 6; i++) {
-            document.getElementById("icon" + i + "").src =
+            document.getElementById("icon-" + i + "").src =
               "http://openweathermap.org/img/wn/" +
               data.list[i].weather[0].icon +
               ".png";
