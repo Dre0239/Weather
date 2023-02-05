@@ -32,7 +32,7 @@ function getInfo(coorUrl) {
         lon +
         "&appid=" +
         key +
-        "";
+        "&units=imperial";
 
       fetch(queryUrl)
         .then(function (response) {
@@ -43,7 +43,23 @@ function getInfo(coorUrl) {
           newCity.textContent = data.city.name;
           for (var i = 0; i < 6; i++) {
             document.getElementById("temp-" + i + "").textContent =
-              "Temp: " + Number(data.list[i].main.temp);
+              "Temp: " + Number(data.list[i].main.temp).toFixed(0) + "°";
+          }
+          for (var i = 0; i < 6; i++) {
+            document.getElementById("wind-" + i + "").textContent =
+              "Wind: " + Number(data.list[i].wind.speed).toFixed(0) + "mph";
+          }
+          for (var i = 0; i < 6; i++) {
+            document.getElementById("humidity-" + i + "").textContent =
+              "Humidity: " +
+              Number(data.list[i].main.humidity).toFixed(0) +
+              "%";
+          }
+          for (var i = 0; i < 6; i++) {
+            document.getElementById("icon" + i + "").src =
+              "http://openweathermap.org/img/wn/" +
+              data.list[i].weather[0].icon +
+              ".png";
           }
         });
     });
