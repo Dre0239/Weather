@@ -6,10 +6,11 @@ var coorUrl =
   "http://api.openweathermap.org/geo/1.0/direct?q={city name},{state code},{country code}&limit={limit}&appid={API key}";
 var search = document.getElementById("search");
 var submitBtn = document.getElementById("btn-submit");
+var newCity = document.getElementById("city");
 
 submitBtn.addEventListener("click", getInfo);
 
-function getInfo() {
+function getInfo(coorUrl) {
   var coorUrl =
     "http://api.openweathermap.org/geo/1.0/direct?q=" +
     search.value +
@@ -22,5 +23,25 @@ function getInfo() {
     })
     .then(function (data) {
       console.log(data);
+      var lat = data[0].lat;
+      var lon = data[0].lon;
+      var queryUrl =
+        "https://api.openweathermap.org/data/2.5/forecast?lat=" +
+        lat +
+        "&lon=" +
+        lon +
+        "&appid=" +
+        key +
+        "";
+
+      fetch(queryUrl)
+        .then(function (response) {
+          return response.json();
+        })
+        .then(function (data) {
+          console.log(data);
+          var newCity = document.getElementById("city");
+          newCity.textContent = data.city.name;
+        });
     });
 }
