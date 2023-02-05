@@ -40,7 +40,7 @@ function getInfo(coorUrl) {
         })
         .then(function (data) {
           console.log(data);
-          var newCity = document.getElementById("city");
+
           newCity.textContent = data.city.name;
         });
     });
