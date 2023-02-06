@@ -24,13 +24,13 @@
     </style>
   </head>
   <body class="min-100-vh flex-colum">
-    <header class="p-3 text-primary text-center">
+    <header class="p-3 text-primary text-center text-warning">
       <h1 id="today">Today's Weather</h1>
     </header>
     <section class="col-12 flex-container row">
       <!-- search box -->
       <div class="col-3">
-        <h2 class="text-primary text-center">Search City</h2>
+        <h2 class="text-primary text-warning text-center">Search City</h2>
         <input
           name="City Search"
           id="search"
@@ -40,7 +40,7 @@
         <button
           id="btn-submit"
           type="submit"
-          class="btn btn-primary col-12 m-2"
+          class="btn btn-primary col-12 m-2 text-warning"
         >
           Search
         </button>
@@ -48,7 +48,7 @@
       <!-- displys for apis -->
 
       <div class="col-9 row mb-2">
-        <div id="cs" class="col-12 bg-light">
+        <div id="cs" class="col-12 bg-primary text-warning">
           <h2 id="city">City</h2>
           <h3 id="day-0"></h3>
           <img src="" id="icon-0" alt="" />
