@@ -2,5 +2,8 @@ body {
   background-image: url(https://source.unsplash.com/1600x900/?belize);
 }
 #cs {
-  border-radius: 25px;
+  border-radius: 30px;
+}
+#search {
+  font-size: 30px;
 }
