@@ -7,3 +7,13 @@ body {
 #search {
   font-size: 30px;
 }
+.card {
+  background-color: rgba(10, 126, 227, 0.113);
+}
+.col-9 {
+  background-color: rgba(119, 182, 238, 0.018);
+}
+
+.cs.col-12 {
+  background-color: rgba(240, 248, 255, 0.386);
+}
