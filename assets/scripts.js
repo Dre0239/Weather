@@ -7,6 +7,7 @@ var coorUrl =
 var search = document.getElementById("search");
 var submitBtn = document.getElementById("btn-submit");
 var newCity = document.getElementById("city");
+var searchCityHistory = [];
 
 submitBtn.addEventListener("click", getInfo);
 
@@ -63,6 +64,9 @@ function getInfo(coorUrl) {
           }
         });
     });
+  searchCityHistory.push(search.value);
+
+  localStorage.setItem("searchCityHistory", JSON.stringify(searchCityHistory));
 }
 
 var weekday = [
