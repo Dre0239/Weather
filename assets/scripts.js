@@ -67,6 +67,10 @@ function getInfo(coorUrl) {
   searchCityHistory.push(search.value);
 
   localStorage.setItem("searchCityHistory", JSON.stringify(searchCityHistory));
+
+  var storedSearchHistory =
+    JSON.parse(localStorage.getItem("searchCityHistory")) || [];
+  searchCityHistory = storedSearchHistory;
 }
 
 var weekday = [
