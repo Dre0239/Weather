@@ -87,42 +87,39 @@ function getInfo() {
         });
       historyCity();
     });
-
-  function creatBtn() {
-    var localInfo = localStorage.getItem("searchCityHistory");
-    if (localInfo == null) {
-      return;
-    }
-    var localArr = JSON.parse(localInfo);
-    for (var i = 0; i < localArr.length; i++) {
-      var localBtn = document.createElement("button");
-      localBtn.classList.add("Btn2");
-      localBtn.textContent = localArr[i];
-      btnHolder.append(localBtn);
-    }
-  }
-
-  btnHolder.addEventListener("click", (event) => {
-    cityName = event.target.textContent;
-    getInfo();
-  });
-
-  // LocalStorage
-  function historyCity() {
-    if (!search.value) {
-      return;
-    }
-    searchCityHistory.push(search.value);
-    localStorage.setItem(
-      "searchCityHistory",
-      JSON.stringify(searchCityHistory)
-    );
-  }
-
-  var storedSearchHistory =
-    JSON.parse(localStorage.getItem("searchCityHistory")) || [];
-  searchCityHistory = storedSearchHistory;
 }
+function creatBtn() {
+  var localInfo = localStorage.getItem("searchCityHistory");
+  if (localInfo == null) {
+    return;
+  }
+  var localArr = JSON.parse(localInfo);
+  for (var i = 0; i < localArr.length; i++) {
+    var localBtn = document.createElement("button");
+    localBtn.classList.add("Btn2");
+    localBtn.textContent = localArr[i];
+    btnHolder.append(localBtn);
+  }
+}
+
+btnHolder.addEventListener("click", (event) => {
+  cityName = event.target.textContent;
+  getInfo();
+});
+
+// LocalStorage
+function historyCity() {
+  if (!search.value) {
+    return;
+  }
+  searchCityHistory.push(search.value);
+  localStorage.setItem("searchCityHistory", JSON.stringify(searchCityHistory));
+}
+
+var storedSearchHistory =
+  JSON.parse(localStorage.getItem("searchCityHistory")) || [];
+searchCityHistory = storedSearchHistory;
+
 // Dislay the days of the week
 var weekday = [
   moment().format("dddd"),
