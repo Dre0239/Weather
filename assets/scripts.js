@@ -9,18 +9,37 @@ var search = document.getElementById("search");
 var submitBtn = document.getElementById("btn-submit");
 var newCity = document.getElementById("city");
 var searchCityHistory = [];
-
+var btnHolder = document.getElementById("btnHolder");
+var cityName;
 //EventListener
 submitBtn.addEventListener("click", getInfo);
-
+//button
+creatBtn();
 //Main Function
-function getInfo(coorUrl) {
-  var coorUrl =
-    "https://api.openweathermap.org/geo/1.0/direct?q=" +
-    search.value +
-    "&limit=1&appid=" +
-    key +
-    "";
+function getInfo() {
+  if (!cityName) {
+    var coorUrl =
+      "https://api.openweathermap.org/geo/1.0/direct?q=" +
+      search.value +
+      "&limit=1&appid=" +
+      key +
+      "";
+    var localBtn = document.createElement("button");
+    localBtn.classList.add("Btn2");
+    localBtn.textContent = search.value;
+    btnHolder.append(localBtn);
+    historyCity(search.value);
+  } else {
+    var coorUrl =
+      "https://api.openweathermap.org/geo/1.0/direct?q=" +
+      cityName +
+      "&limit=1&appid=" +
+      key +
+      "";
+    historyCity(cityName);
+  }
+  cityName = "";
+
   fetch(coorUrl)
     .then(function (response) {
       return response.json();
@@ -66,11 +85,39 @@ function getInfo(coorUrl) {
               ".png";
           }
         });
+      historyCity();
     });
-  //SearchCityhistory
-  searchCityHistory.push(search.value);
+
+  function creatBtn() {
+    var localInfo = localStorage.getItem("searchCityHistory");
+    if (localInfo == null) {
+      return;
+    }
+    var localArr = JSON.parse(localInfo);
+    for (var i = 0; i < localArr.length; i++) {
+      var localBtn = document.createElement("button");
+      localBtn.classList.add("Btn2");
+      localBtn.textContent = localArr[i];
+      btnHolder.append(localBtn);
+    }
+  }
+
+  btnHolder.addEventListener("click", (event) => {
+    cityName = event.target.textContent;
+    getInfo();
+  });
+
   // LocalStorage
-  localStorage.setItem("searchCityHistory", JSON.stringify(searchCityHistory));
+  function historyCity() {
+    if (!search.value) {
+      return;
+    }
+    searchCityHistory.push(search.value);
+    localStorage.setItem(
+      "searchCityHistory",
+      JSON.stringify(searchCityHistory)
+    );
+  }
 
   var storedSearchHistory =
     JSON.parse(localStorage.getItem("searchCityHistory")) || [];
