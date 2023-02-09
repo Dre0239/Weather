@@ -1,3 +1,4 @@
+// Var
 var key = "052c877c89e1f9ec31d06f6147e53963";
 var lat;
 var lon;
@@ -9,8 +10,10 @@ var submitBtn = document.getElementById("btn-submit");
 var newCity = document.getElementById("city");
 var searchCityHistory = [];
 
+//EventListener
 submitBtn.addEventListener("click", getInfo);
 
+//Main Function
 function getInfo(coorUrl) {
   var coorUrl =
     "https://api.openweathermap.org/geo/1.0/direct?q=" +
@@ -64,15 +67,16 @@ function getInfo(coorUrl) {
           }
         });
     });
+  //SearchCityhistory
   searchCityHistory.push(search.value);
-
+  // LocalStorage
   localStorage.setItem("searchCityHistory", JSON.stringify(searchCityHistory));
 
   var storedSearchHistory =
     JSON.parse(localStorage.getItem("searchCityHistory")) || [];
   searchCityHistory = storedSearchHistory;
 }
-
+// Dislay the days of the week
 var weekday = [
   moment().format("dddd"),
   moment().add(1, "d").format("dddd"),
